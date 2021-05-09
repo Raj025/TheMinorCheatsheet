@@ -7,6 +7,8 @@ import  Navbar  from "./Navbar";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Profile_Manager from './Profile_Manager';
 
+import ReactNotifications from 'react-notifications-component';
+
 
 function App() {
   // return (
@@ -46,8 +48,12 @@ function App() {
     // </Router>
 
     <>
+    <ReactNotifications/>
     <Navbar name="Raj"/>
     <Profile_Manager account_email="abc@abc.com"/>
+    
+
+    
     </>
   );
 

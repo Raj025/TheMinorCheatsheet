@@ -2,6 +2,12 @@ import React, { useState , useEffect} from 'react'
 import "./Profile_style.css";
 import { Link } from "react-router-dom";
 
+import ReactNotification from 'react-notifications-component'
+import { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
+import "animate.css"
+
+
 export default function Profile_Editable(props) {
     // return (
     //     <div>
@@ -55,6 +61,46 @@ export default function Profile_Editable(props) {
       console.log('new data added');
       console.log(result);
       setisPending(false);
+
+      const notification = {
+        title: "Updated Successfully !",
+        message: "Your details are updated",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
+        animationOut: ["animate__animated animate__fadeOut"], // `animate.css v4` classes
+        dismiss: {
+          duration: 4000,
+          pauseOnHover: true
+
+        }
+
+        
+      };
+      store.addNotification(notification);
+      
+
+    }).catch(() => {
+
+      const notification = {
+        title: "Not updated !",
+        message: "Your details are not updated",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
+        animationOut: ["animate__animated animate__fadeOut"], // `animate.css v4` classes
+        dismiss: {
+          duration: 4000,
+          pauseOnHover: true
+
+        }
+
+        
+      };
+      store.addNotification(notification);
+
     })
 
       
