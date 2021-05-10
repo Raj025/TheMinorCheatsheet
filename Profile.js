@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react'
 import "./Profile_style.css";
 import { Link } from "react-router-dom";
+import Modal from 'react-modal';
 
 export default function Profile(props) {
 
@@ -33,6 +34,32 @@ export default function Profile(props) {
     const [mobile,setMobile]=useState('Loading..');
     
     const [fetch_status,setfetch_status]=useState(false);
+
+
+    const customStyles = {
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(255, 255, 255, 0.75)'
+        },
+        content : {
+  
+          top: '5%',
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
+        height:'auto'
+          //marginRight           : '-50%',
+          //transform             : 'translate(-50%, -50%)',
+          ///border: '2px solid #fe3a9e',
+          //borderRadius: '50px 50px 50px 50px'
+        }
+      };
+  
+      const [isOpen, setisOpen] = useState(true);
 
     useEffect(() => {
         console.log('use effect ran');
@@ -74,6 +101,19 @@ export default function Profile(props) {
 
     return (
         <div>
+
+<Modal  style={customStyles} contentLabel="Example Modal" isOpen={isOpen} onRequestClose={()=>{
+          setisOpen(false);
+        }}>
+
+<div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" data-gtm-vis-recent-on-screen-2340190_1525="3721" data-gtm-vis-first-on-screen-2340190_1525="3721" data-gtm-vis-total-visible-time-2340190_1525="100" data-gtm-vis-has-fired-2340190_1525="1">My Profile 😊 </h5>
+              <button onClick={()=>{
+                setisOpen(false);
+              }} type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
             <div className="container emp-profile">
             <form method="post">
                 <div className="row">
@@ -81,10 +121,10 @@ export default function Profile(props) {
                         <div className="profile-img">
                         {/* "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" */}
                             <img src={pic}  alt="error"/>
-                            <div className="file btn btn-lg btn-primary">
+                            {/* <div className="file btn btn-lg btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -200,6 +240,7 @@ export default function Profile(props) {
                 </div>
             </form>           
         </div>
+        </Modal>
         </div>
     )
 }

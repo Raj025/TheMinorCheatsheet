@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react'
 import "./Profile_style.css";
 import { Link } from "react-router-dom";
+import Modal from 'react-modal';
 
 import ReactNotification from 'react-notifications-component'
 import { store } from 'react-notifications-component';
@@ -31,6 +32,9 @@ export default function Profile_Editable(props) {
     // const [__v,set__V]=useState(props.__v);
     // const [id,setId]=useState(props.id);
     // const [mobile,setMobile]=useState(props.mobile);
+
+
+
 
 
     const [name,setName]=useState('Loading..');
@@ -82,6 +86,32 @@ export default function Profile_Editable(props) {
     const[password_altered,setPassword_altered]=useState(false);
 
     console.log(pic);
+
+
+    const customStyles = {
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.75)'
+      },
+      content : {
+
+        top: '5%',
+      left: '10%',
+      right: '10%',
+      bottom: '10%',
+      height:'auto'
+        //marginRight           : '-50%',
+        //transform             : 'translate(-50%, -50%)',
+        ///border: '2px solid #fe3a9e',
+        //borderRadius: '50px 50px 50px 50px'
+      }
+    };
+
+    const [isOpen, setisOpen] = useState(true);
     
     
 
@@ -148,6 +178,7 @@ export default function Profile_Editable(props) {
 
     })
 
+    
       
      
     }
@@ -159,6 +190,18 @@ export default function Profile_Editable(props) {
 
     return (
       <div>
+        <Modal  style={customStyles} contentLabel="Example Modal" isOpen={isOpen} onRequestClose={()=>{
+          setisOpen(false);
+        }}>
+
+        <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" data-gtm-vis-recent-on-screen-2340190_1525="3721" data-gtm-vis-first-on-screen-2340190_1525="3721" data-gtm-vis-total-visible-time-2340190_1525="100" data-gtm-vis-has-fired-2340190_1525="1">Edit Profile ✏️ </h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onClick={()=>{
+                setisOpen(false);
+              }}></button>
+            </div>
+
+
         <div className="container emp-profile">
           <form method="post">
             <div className="row">
@@ -390,6 +433,9 @@ export default function Profile_Editable(props) {
             </div>
           </form>
         </div>
+        
+        </Modal>
+
       </div>
     );
 }
