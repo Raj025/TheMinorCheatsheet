@@ -48,9 +48,29 @@ function App() {
     // </Router>
 
     <>
+
+
+
     <ReactNotifications/>
     <Navbar name="Raj"/>
-    <Profile_Manager account_email="abc@abc.com"/>
+    
+
+    <Router>
+
+    <Switch>
+      <Route exact path="/profile">
+      <Profile email="abc@abc.com"/> 
+      </Route>
+        
+      <Route exact path="/edit">
+      <Profile_Editable email="abc@abc.com"/> 
+      </Route>
+    </Switch>
+
+    </Router>
+    
+
+    
     
 
     

@@ -19,18 +19,63 @@ export default function Profile_Editable(props) {
             
     //     </div>
     // )
-    const [name,setName]=useState(props.name);
-    const [email,setEmail]=useState(props.email);
-    const [password,setPassword]=useState(props.password);
-    const [gender,setGender]=useState(props.gender);
-    const [bio,setBio]=useState(props.bio);
-    const [year,setYear]=useState(props.year);
-    const [signupas,setSignupas]=useState(props.signupas);
-    const [pic,setPic]=useState(props.pic);
-    const [tag,setTag]=useState(props.tag);
-    const [__v,set__V]=useState(props.__v);
-    const [id,setId]=useState(props.id);
-    const [mobile,setMobile]=useState(props.mobile);
+    // const [name,setName]=useState(props.name);
+    // const [email,setEmail]=useState(props.email);
+    // const [password,setPassword]=useState(props.password);
+    // const [gender,setGender]=useState(props.gender);
+    // const [bio,setBio]=useState(props.bio);
+    // const [year,setYear]=useState(props.year);
+    // const [signupas,setSignupas]=useState(props.signupas);
+    // const [pic,setPic]=useState(props.pic);
+    // const [tag,setTag]=useState(props.tag);
+    // const [__v,set__V]=useState(props.__v);
+    // const [id,setId]=useState(props.id);
+    // const [mobile,setMobile]=useState(props.mobile);
+
+
+    const [name,setName]=useState('Loading..');
+    const [email,setEmail]=useState('Loading..');
+    const [password,setPassword]=useState('Loading..');
+    const [gender,setGender]=useState('Loading..');
+    const [bio,setBio]=useState('Loading..');
+    const [year,setYear]=useState('Loading..');
+    const [signupas,setSignupas]=useState('Loading..');
+    const [pic,setPic]=useState('Loading..');
+    const [tag,setTag]=useState('Loading..');
+    const [__v,set__V]=useState('Loading..');
+    const [id,setId]=useState('Loading..');
+    const [mobile,setMobile]=useState('Loading..');
+    
+    const [fetch_status,setfetch_status]=useState(false);
+
+    useEffect(() => {
+        console.log('use effect ran');
+        
+        fetch('http://localhost:3002/register_get_email/'+props.email)
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            setName(data.user[0].name);
+            setEmail(data.user[0].email);
+            setGender(data.user[0].gender);
+            setId(data.user[0].id);
+            setMobile(data.user[0].mobno);
+            setPassword(data.user[0].password);
+            setPic("http://localhost:3002/"+data.user[0].pic);
+            //setPic(data.user[0].pic);
+            setTag(data.user[0].tag);
+            setYear(data.user[0].year);
+            set__V(data.user[0].__v);
+            setBio(data.user[0].bio);
+            setSignupas(data.user[0].signupas);
+            console.log(data);
+
+            setfetch_status(true);
+            
+            
+          })
+      }, [])
 
     const[isPending,setisPending]=useState(false);
 
@@ -162,7 +207,7 @@ export default function Profile_Editable(props) {
                 </div>
               </div>
               <div className="col-md-2">
-                <Link to="/" className="profile-edit-btn">
+                <Link to="/profile" className="profile-edit-btn">
                   View Profile
                 </Link>
               </div>

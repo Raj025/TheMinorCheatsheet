@@ -56,12 +56,12 @@ export default function Profile_Manager(props) {
 
 
     return (
-        <Router>
+      <Router>
       <div className="App">
         
         {fetch_status && <div className="content">
           <Switch>
-            <Route exact path="/" >
+            <Route exact path="/profile" >
               <Profile name={name} email={email} gender={gender} id={id} password={password} year={year} signupas={signupas} bio={bio} pic={pic} tag={tag} mobile={mobile} __v={__v} />
             </Route>
             <Route exact path="/edit" >

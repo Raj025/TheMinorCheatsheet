@@ -1,5 +1,7 @@
-import React, { useState , useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState} from 'react'
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import { Link, Router } from 'react-router-dom'
 
 
 
@@ -12,6 +14,22 @@ export default function Navbar(props) {
 
     const display_post = (e) => {
         setSearch(e.target.value);
+
+        fetch('http://localhost:3002/post_get_title/'+e.target.value)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          
+          console.log(data.post[0]);
+          
+
+          
+          
+          
+        }).catch(err=> console.log(err))
+
+      
 
     }
 
@@ -60,8 +78,19 @@ export default function Navbar(props) {
                 <li className="nav-item">
                     <a className="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
-            <li classNameName="nav-item">
-                {/* <Link to="/" className="nav-link" href="#">Update Profile</Link> */}
+            <li className="nav-item">
+
+               
+              {/* <Link to="/profile" className="nav-link" >Update Profile</Link> */}
+              
+               
+              
+
+              
+
+
+
+                
 
                 <a className="nav-link" href="#">Update Profile</a>
             </li>
